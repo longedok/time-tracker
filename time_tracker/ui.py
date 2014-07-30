@@ -1,6 +1,6 @@
 import time
 
-from PySide.QtGui import QWidget, QHeaderView, QDialog, QAbstractItemView
+from PySide.QtGui import QWidget, QHeaderView, QDialog, QAbstractItemView, QMessageBox
 from PySide.QtCore import QTimer, Qt, Slot
 
 from ui_mainform import Ui_MainForm
@@ -38,8 +38,10 @@ class MainForm(QWidget, Ui_MainForm):
 		self.project_service.active_project_renamed.connect(self.active_project_rename_slot)
 
 		self.projects_table.setModel(self.project_service.table_model)
+		self.projects_table.setSortingEnabled(True)
 		self.projects_table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
 		self.projects_table.setSelectionBehavior(QAbstractItemView.SelectRows)
+		self.projects_table.doubleClicked.connect(self._table_view_double_click)
 
 		selection_model = self.projects_table.selectionModel()
 		selection_model.selectionChanged.connect(self._selection_changed)
@@ -63,16 +65,23 @@ class MainForm(QWidget, Ui_MainForm):
 
 	def switch_project_clicked(self):
 		ix = self.projects_table.selectionModel().selectedRows()[0]
-		if self.session_service.get_state() == SessionState.ACTIVE:
-			self.session_service.stop_session()
-		self.project_service.switch_project(ix)
+		self._switch_project(ix)
 
 	def watch_sessions_clicked(self):
-		pass
+		ix = self.projects_table.selectionModel().selectedRows()[0]
+		prj = self.project_service.get_project_by_index(ix)
+		sess_form = SessionForm(self, prj, self.session_service)
+		sess_form.show()
 
 	def delete_project_clciked(self):
 		ixs = self.projects_table.selectionModel().selectedRows()
-		self.project_service.delete_projects(ixs)
+		ix_num = len(ixs)
+		title = "Delete project%s" % ("s" if ix_num > 1 else "",)
+		message = "Are you sure? (%d project%s)" % (ix_num, "s" if ix_num > 1 else "")
+		ret = QMessageBox.question(self, title, message, 
+							QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+		if ret == QMessageBox.Yes:
+			self.project_service.delete_projects(ixs)
 
 	@Slot(SessionModel)
 	def session_start_slot(self, session):
@@ -117,6 +126,9 @@ class MainForm(QWidget, Ui_MainForm):
 	def active_project_rename_slot(self, project):
 		self.current_project_label.setText("Current project is <strong>%s</strong>" % project.name)
 
+	def closeEvent(self, event):
+		self.session_service.stop_session()
+
 	def _selection_changed(self, selected, deselected):
 		rows = self.projects_table.selectionModel().selectedRows()
 		if len(rows) == 1: # a single project was selected, enable all bottom buttons
@@ -132,20 +144,27 @@ class MainForm(QWidget, Ui_MainForm):
 			self.watch_sessions_button.setEnabled(False)
 			self.delete_project_button.setEnabled(False)
 
+	def _table_view_double_click(self, index):
+		self._switch_project(index)
+
 	def _clear_timer(self):
 		self.timer_label.setText("00:00:00")
+
+	def _switch_project(self, ix):
+		if self.session_service.get_state() == SessionState.ACTIVE:
+			self.session_service.stop_session()
+		self.project_service.switch_project(ix)
 
 
 class SessionForm(QDialog, Ui_SessionsForm):
 
-	def __init__(self, parent, project, session_dao):
+	def __init__(self, parent, project, session_service):
 		super(SessionForm, self).__init__(parent)
 		self.setupUi(self)
 
 		self.project = project
-		self.session_dao = session_dao
-		self.setWindowTitle("Project: %s" % self.project.name)
+		self.setWindowTitle("Project: %s" % project.name)
 
-		self.sessions_model = SessionTableModel(self, project, self.session_dao)
-		self.table_sessions.setModel(self.sessions_model)
-		self.table_sessions.horizontalHeader().setResizeMode(QHeaderView.Stretch)
+		self.sessions_table.setModel(session_service.get_table_model(project))
+		self.sessions_table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
+		self.sessions_table.setSelectionBehavior(QAbstractItemView.SelectRows)

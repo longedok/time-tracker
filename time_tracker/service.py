@@ -13,6 +13,9 @@ class ProjectService(QObject):
 	active_project_deleted = Signal(ProjectModel)
 	active_project_renamed = Signal(ProjectModel)
 
+	default_project_name = "New Project (%d)"
+	project_number = 0
+
 	def __init__(self):
 		super(ProjectService, self).__init__()
 
@@ -24,8 +27,9 @@ class ProjectService(QObject):
 
 	def start_project(self):
 		"Starts a new project"
-
-		self.current_project = ProjectModel()
+		ProjectService.project_number += 1
+		default_name = ProjectService.default_project_name % ProjectService.project_number
+		self.current_project = ProjectModel(name=default_name)
 		self.current_project = self.project_dao.save(self.current_project)
 
 		self.table_model.insert_project(0, self.current_project)
@@ -36,7 +40,7 @@ class ProjectService(QObject):
 		"Deletes projects"
 
 		ids = map(lambda x:self.table_model.data(x, Qt.UserRole).id, ixs)
-		if self.current_project.id in ids:
+		if self.current_project and self.current_project.id in ids:
 			self.active_project_deleted.emit(self.current_project)
 		self.project_dao.delete_multiple(ids)
 		for ix in reversed(ixs):
@@ -47,19 +51,24 @@ class ProjectService(QObject):
 
 		project = self.table_model.data(ix, Qt.UserRole)
 
-		self.current_project = project
-		self.project_activated.emit(project)
+		if project.id != self.current_project:
+			self.current_project = project
+			self.project_activated.emit(project)
+
+	def get_project_by_index(self, ix):
+		return self.table_model.data(ix, Qt.UserRole)
 
 	def timer_update_slot(self, time):
-		"Updates total time of current project in the table model"
+		"Updates total time of the current project in the table model"
 
 		ix = self.table_model.get_project_duration_index(self.current_project)
 		self.table_model.setData(ix, 1, Qt.UserRole)
 
 	def _data_changed(self, left_top, bottom_right):
-		changed_prj = self.table_model.data(left_top, Qt.UserRole)
-		if left_top.column() == 0 and changed_prj.id == self.current_project.id:
-			self.active_project_renamed.emit(self.current_project)
+		if self.current_project:
+			changed_prj = self.table_model.data(left_top, Qt.UserRole)
+			if left_top.column() == 0 and changed_prj.id == self.current_project.id:
+				self.active_project_renamed.emit(self.current_project)
 
 
 class SessionService(QObject):
@@ -100,15 +109,20 @@ class SessionService(QObject):
 		self.session_resumed.emit()
 
 	def stop_session(self):
-		self.time = 0
 		self.state = SessionState.STOPPED
 		self.timer.stop()
-		self.current_session.end = time.time()
-		self.session_dao.save(self.current_session)
-		self.session_stopped.emit()
+		if self.current_session:
+			self.current_session.end = self.current_session.start + self.time
+			self.session_dao.save(self.current_session)
+			self.session_stopped.emit()
+		self.time = 0
 
 	def get_state(self):
 		return self.state
+
+	def get_table_model(self, project):
+		'Returns a table model with sessions for the specified project'
+		return SessionTableModel(self, project, self.session_dao)
 
 	def _timer_timeout(self):
 		self.time += 1

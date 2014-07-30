@@ -1,26 +1,37 @@
 import time
+import operator
 
 from PySide.QtCore import QAbstractTableModel, Qt, QModelIndex
+from PySide.QtGui import QMessageBox
 
 from utils import convert_seconds_to_time, convert_timestamp_to_time
 
 
 class ProjectModel(object):
-	default_project_name = "New Project (%d)"
-	project_number = 1
 
 	def __init__(self, id=0, name='', last_session=None, total_duration=0):
-		if len(name) == 0:
-			self.name = ProjectModel.default_project_name % ProjectModel.project_number
-			ProjectModel.project_number += 1
-		else:
-			self.name = name
 		self.id = id
+		self.name = name
 		self.last_session = last_session or time.time()
 		self.total_duration = total_duration or 0
 
 	def __str__(self):
 		return "%d - %s" % (self.id, self.name)
+
+	def __getitem__(self, name):
+		if name == 'name':
+			return self.name
+		elif name == 'last_session':
+			return self.last_session
+		elif name == 'total_duration':
+			return self.total_duration
+
+	@staticmethod
+	def validate(project):
+		errors = []
+		if len(project.name.strip()) == 0:
+			errors.append("Project name couldn't be empty")
+		return errors
 
 
 class ProjectTableModel(QAbstractTableModel):
@@ -28,6 +39,7 @@ class ProjectTableModel(QAbstractTableModel):
 	def __init__(self, parent, project_dao, *args):
 		QAbstractTableModel.__init__(self, parent, *args)
 
+		self.parent_widget = parent
 		self.projects = project_dao.get_all()
 		self.project_dao = project_dao
 
@@ -37,6 +49,14 @@ class ProjectTableModel(QAbstractTableModel):
 		self.projects.insert(position, project)
 
 		self.endInsertRows()
+
+
+	def get_project_duration_index(self, project):
+		"Returns index of the 'Duration' cell for the given project"
+
+		for row, prj in enumerate(self.projects):
+			if prj.id == project.id:
+				return self.index(row, 2, QModelIndex())
 
 	def rowCount(self, parent):
 		return len(self.projects)
@@ -94,8 +114,16 @@ class ProjectTableModel(QAbstractTableModel):
 			if role == Qt.EditRole:
 				prj = self.projects[index.row()]
 				if index.column() == 0:
-					prj.name = value
-					self.project_dao.save(prj)
+					validation_errors = ProjectModel.validate(ProjectModel(name=str(value)))
+					if not validation_errors:
+						prj.name = value
+						self.project_dao.save(prj)
+					else:
+						# I would rather rasie an exception here, and then show the error message box
+						# in the UI, but in this case setData is called from QTableView widget and I
+						# don't have access to the actual call to wrap it inside try..catch
+						QMessageBox.critical(None, "Saving error", validation_errors[0], 
+							QMessageBox.Ok, QMessageBox.Ok)
 				else:
 					return False
 			elif role == Qt.UserRole:
@@ -115,12 +143,21 @@ class ProjectTableModel(QAbstractTableModel):
 			return Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsSelectable
 		return super(ProjectTableModel, self).flags(index)
 
-	def get_project_duration_index(self, project):
-		"Returns index of the 'Duration' cell for the given project"
+	def sort(self, column, order):
+		self.layoutAboutToBeChanged.emit()
 
-		for row, prj in enumerate(self.projects):
-			if prj.id == project.id:
-				return self.index(row, 2, QModelIndex())
+		if column == 0:
+			self.projects = sorted(self.projects, key=operator.itemgetter("name"))
+		elif column == 1:
+			self.projects = sorted(self.projects, key=operator.itemgetter("last_session"))
+		elif column == 2:
+			self.projects = sorted(self.projects, key=operator.itemgetter("total_duration"))
+
+		if order == Qt.DescendingOrder:
+			self.projects.reverse()
+
+		self.layoutChanged.emit()
+
 
 
 class SessionModel(object):
@@ -161,21 +198,6 @@ class SessionTableModel(QAbstractTableModel):
 			return convert_timestamp_to_time(session.end)
 		elif index.column() == 2:
 			return convert_seconds_to_time(session.end - session.start)
-
-	# def flags(self, index):
-	# 	if index.column() == 0:
-	# 		return Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsSelectable
-	# 	return super(ProjectTableModel, self).flags(index)
-
-	# def setData(self, index, value, role):
-	# 	if index.column() == 0:
-	# 		prj = self.projects[index.row()]
-	# 		prj.name = value
-	# 		self.dataChanged.emit(index, index)
-	# 		self.project_dao.save(prj)
-	# 		return True
-	# 	else:
-	# 		return False
 
 	def headerData(self, col, orientation, role):
 		if orientation == Qt.Horizontal and role == Qt.DisplayRole:
