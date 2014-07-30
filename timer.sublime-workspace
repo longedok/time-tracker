@@ -1,0 +1,717 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"proje",
+				"project"
+			],
+			[
+				"table",
+				"table_model"
+			],
+			[
+				"curre",
+				"current_project"
+			],
+			[
+				"dele",
+				"delete"
+			],
+			[
+				"sele",
+				"selected_ix"
+			],
+			[
+				"project",
+				"project_service"
+			],
+			[
+				"selection",
+				"selectionModel"
+			],
+			[
+				"prj_d",
+				"project_dao"
+			],
+			[
+				"proj",
+				"projects"
+			],
+			[
+				"prj",
+				"prj_model"
+			],
+			[
+				"sesion",
+				"session_service"
+			],
+			[
+				"stop_",
+				"stop_session_button"
+			],
+			[
+				"start_p",
+				"start_project_button"
+			],
+			[
+				"timer",
+				"timer_update_slot"
+			],
+			[
+				"project_act",
+				"project_activation_slot"
+			],
+			[
+				"Proje",
+				"ProjectModel"
+			],
+			[
+				"Proj",
+				"ProjectModel"
+			],
+			[
+				"start_se",
+				"start_session_button"
+			],
+			[
+				"curr",
+				"current_project"
+			],
+			[
+				"delete",
+				"delete_project_button"
+			],
+			[
+				"switch_p",
+				"switch_project_button"
+			],
+			[
+				"ses",
+				"SessionService"
+			],
+			[
+				"start_ses",
+				"start_session_button"
+			],
+			[
+				"session_st",
+				"session_stopped"
+			],
+			[
+				"session",
+				"session_dao"
+			],
+			[
+				"Ses",
+				"SessionDao"
+			],
+			[
+				"stop",
+				"stop_session_clicked"
+			],
+			[
+				"watch",
+				"watch_sessions_clicked"
+			],
+			[
+				"swit",
+				"switch_project_clicked"
+			],
+			[
+				"clc",
+				"clicked"
+			],
+			[
+				"start_proj",
+				"start_project_clicked"
+			],
+			[
+				"select",
+				"selectionModel"
+			],
+			[
+				"Sess",
+				"SessionModel"
+			],
+			[
+				"cur",
+				"current_session"
+			],
+			[
+				"p",
+				"project"
+			],
+			[
+				"cl",
+				"clicked"
+			],
+			[
+				"sw",
+				"switch_button_clicked"
+			],
+			[
+				"selected",
+				"selectedRows"
+			],
+			[
+				"ta",
+				"projects_table"
+			],
+			[
+				"Project",
+				"ProjectModel"
+			],
+			[
+				"S",
+				"SELECT"
+			],
+			[
+				"projec",
+				"project_name"
+			],
+			[
+				"re",
+				"returned"
+			],
+			[
+				"ti",
+				"timer_label"
+			],
+			[
+				"time",
+				"time_ticking"
+			],
+			[
+				"star",
+				"start_button"
+			],
+			[
+				"sta",
+				"start_button_clicked"
+			],
+			[
+				"tea",
+				"teachers_app"
+			],
+			[
+				"P",
+				"PaymentType"
+			],
+			[
+				"vi",
+				"visible"
+			],
+			[
+				"vis",
+				"visibility"
+			],
+			[
+				"progre",
+				"progress_gif"
+			],
+			[
+				"visi",
+				"visible"
+			],
+			[
+				"clear",
+				"clear_link"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"clea",
+				"clear_link"
+			],
+			[
+				"data",
+				"data_output"
+			],
+			[
+				"fun",
+				"function"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "main.py",
+			"settings":
+			{
+				"buffer_size": 526,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "time_tracker/service.py",
+			"settings":
+			{
+				"buffer_size": 2814,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/code/python/xpride/xpride_blog/blog/views.py",
+			"settings":
+			{
+				"buffer_size": 2635,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/D/code/python/xpride/xpride_blog/.gitignore",
+			"settings":
+			{
+				"buffer_size": 5,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 5,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "time_tracker/ui.py",
+			"settings":
+			{
+				"buffer_size": 4995,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "time_tracker/models.py",
+			"settings":
+			{
+				"buffer_size": 4910,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "time_tracker/db.py",
+			"settings":
+			{
+				"buffer_size": 2767,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"command_palette":
+	{
+		"height": 58.0,
+		"selected_items":
+		[
+		],
+		"width": 512.0
+	},
+	"console":
+	{
+		"height": 223.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/code/python/xpride/xpride_blog/readme.txt",
+		"/D/code/python/timer/time_tracker/application.py",
+		"/D/code/python/test.py",
+		"/D/code/python/timer/main.py",
+		"/D/code/python/timer/time_tracker/ui.py",
+		"/D/code/python/timer/time_tracker/service.py",
+		"/D/code/python/timer/time_tracker/models.py",
+		"/D/code/python/timer/time_tracker/db.py",
+		"/D/tools/python 2.7/Lib/site-packages/PySide/examples/graphicsview/padnavigator/padnavigator.py",
+		"/D/code/python/timer/time_tracker/utils.py",
+		"/D/code/python/timer/time_tracker/constants.py",
+		"/D/tools/python 2.7/Lib/site-packages/PySide/examples/hyperui/build/lib/hyperuilib/main.py",
+		"/D/tools/python 2.7/Lib/site-packages/PySide/examples/itemviews/addressbook/tablemodel.py",
+		"/D/tools/python 2.7/Lib/site-packages/PySide/examples/itemviews/addressbook/addresswidget.py",
+		"/D/tools/python 2.7/Lib/site-packages/PySide/examples/itemviews/addressbook/addressbook.py",
+		"/D/tools/python 2.7/Lib/site-packages/PySide/examples/tutorial/t10.py",
+		"/D/tools/python 2.7/Lib/site-packages/PySide/examples/tutorial/t9.py",
+		"/D/tools/python 2.7/Lib/site-packages/PySide/examples/tutorial/t8.py",
+		"/D/tools/python 2.7/Lib/site-packages/PySide/examples/tutorial/t7.py",
+		"/D/tools/python 2.7/Lib/site-packages/PySide/examples/tutorial/t6.py",
+		"/D/tools/python 2.7/Lib/site-packages/PySide/examples/tutorial/t5.py",
+		"/D/tools/python 2.7/Lib/site-packages/PySide/examples/tutorial/t4.py",
+		"/D/tools/python 2.7/Lib/site-packages/PySide/examples/tutorial/t3.py",
+		"/D/tools/python 2.7/Lib/site-packages/PySide/examples/tutorial/t2.py",
+		"/D/tools/python 2.7/Lib/site-packages/PySide/examples/tutorial/t1.py",
+		"/D/code/python/timer/time_tracker/ui_sessionsform.py",
+		"/D/code/python/timer/time_tracker/ui_forms.py",
+		"/D/code/python/timer/time_tracker/ui_mainform.py",
+		"/D/code/python/timer/forms/generate.bat",
+		"/D/code/python/zalgo/zalgo/ui.py",
+		"/D/code/python/timer/forms/ui_forms.py",
+		"/D/code/python/noise filter/Noise Filter/ui/forms.py",
+		"/D/code/python/django/teachers/teachers_app/constants.py",
+		"/D/code/python/xpride/xpride_blog/xpride_blog/settings.py",
+		"/D/tools/python 2.7/Lib/site-packages/allauth/account/urls.py",
+		"/D/tools/python 2.7/Lib/site-packages/allauth/urls.py",
+		"/D/code/python/django/teachers/teachers/settings.py",
+		"/D/code/python/django/teachers/teachers_app/models.py",
+		"/D/code/python/django/teachers/teachers_app/templates/teachers_app/index.html",
+		"/D/code/python/django/teachers/teachers_app/views.py",
+		"/D/code/python/django/teachers/teachers_app/templates/teachers_app/profile.html",
+		"/D/code/python/django/teachers/teachers_app/templates/account/signup.html",
+		"/D/code/python/django/teachers/teachers_app/templates/account/login.html",
+		"/D/code/python/django/teachers/teachers_app/static/teachers_app/css/main.css",
+		"/D/code/python/django/teachers/teachers/urls.py",
+		"/D/code/python/django/teachers/teachers_app/urls.py",
+		"/D/code/python/django/teachers/teachers_app/templates/account/base.html",
+		"/D/tools/python 2.7/Lib/site-packages/allauth/templates/base.html",
+		"/D/code/python/xpride/xpride_blog/xpride_blog/urls.py",
+		"/C/Users/Evgeniy/AppData/Roaming/Sublime Text 2/Packages/User/django_tag_snippet.sublime-snippet",
+		"/C/Users/Evgeniy/AppData/Roaming/Sublime Text 2/Packages/User/block_snippet.sublime-snippet",
+		"/D/code/python/xpride/xpride_blog/blog/templates/blog/base.html",
+		"/D/code/python/django/ajax_test/ajax_test_app/views.py",
+		"/D/Nik.txt",
+		"/D/code/python/django/teachers/manage.py",
+		"/D/code/python/django/ajax_test/ajax_test_app/templates/ajaxapp/ajax.html",
+		"/D/code/python/django/ajax_test/ajax_test_app/templates/ajaxapp/index.html",
+		"/D/code/python/django/ajax_test/ajax_test_app/templates/ajaxapp/base.html",
+		"/D/code/python/django/ajax_test/manage.py",
+		"/D/code/python/django/ajax_test/ajax_test/settings.py",
+		"/D/code/python/django/ajax_test/ajax_test/urls.py",
+		"/D/code/python/django/ajax_test/ajax_test_app/urls.py",
+		"/D/code/python/django/ajax_test/ajax_test_app/templates/index.html",
+		"/D/code/python/xpride/xpride_blog/blog/urls.py",
+		"/D/code/python/xpride/xpride_blog/blog/views.py",
+		"/C/Users/Evgeniy/AppData/Roaming/Sublime Text 2/Packages/Theme - Default/Default.sublime-theme"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"start_bu",
+			"(u\".*\")",
+			"sidebar_lab"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"_(\\1)"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "main.py",
+					"settings":
+					{
+						"buffer_size": 526,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								120,
+								120
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "time_tracker/service.py",
+					"settings":
+					{
+						"buffer_size": 2814,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1038,
+								1038
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 420.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/D/code/python/xpride/xpride_blog/blog/views.py",
+					"settings":
+					{
+						"buffer_size": 2635,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								664,
+								664
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 840.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/D/code/python/xpride/xpride_blog/.gitignore",
+					"settings":
+					{
+						"buffer_size": 5,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5,
+								5
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": ".gitignore",
+					"settings":
+					{
+						"buffer_size": 5,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5,
+								5
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "time_tracker/ui.py",
+					"settings":
+					{
+						"buffer_size": 4995,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2687,
+								2687
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1080.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "time_tracker/models.py",
+					"settings":
+					{
+						"buffer_size": 4910,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2067,
+								2067
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1462.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "time_tracker/db.py",
+					"settings":
+					{
+						"buffer_size": 2767,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1871,
+								1871
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 600.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 66.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"time_tracker/db.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 221.0,
+	"status_bar_visible": true
+}
