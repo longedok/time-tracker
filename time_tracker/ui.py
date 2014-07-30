@@ -34,6 +34,8 @@ class MainForm(QWidget, Ui_MainForm):
 		self.session_service.timer_updated.connect(self.timer_update_slot)
 
 		self.project_service.project_activated.connect(self.project_activation_slot)
+		self.project_service.active_project_deleted.connect(self.active_project_deletion_slot)
+		self.project_service.active_project_renamed.connect(self.active_project_rename_slot)
 
 		self.projects_table.setModel(self.project_service.table_model)
 		self.projects_table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
@@ -61,16 +63,16 @@ class MainForm(QWidget, Ui_MainForm):
 
 	def switch_project_clicked(self):
 		ix = self.projects_table.selectionModel().selectedRows()[0]
+		if self.session_service.get_state() == SessionState.ACTIVE:
+			self.session_service.stop_session()
 		self.project_service.switch_project(ix)
 
 	def watch_sessions_clicked(self):
 		pass
 
 	def delete_project_clciked(self):
-		start = time.time()
 		ixs = self.projects_table.selectionModel().selectedRows()
 		self.project_service.delete_projects(ixs)
-		print "Total:", time.time() - start
 
 	@Slot(SessionModel)
 	def session_start_slot(self, session):
@@ -103,6 +105,17 @@ class MainForm(QWidget, Ui_MainForm):
 	@Slot(float)
 	def timer_update_slot(self, time):
 		self.timer_label.setText(convert_seconds_to_time(time))
+
+	@Slot(ProjectModel)
+	def active_project_deletion_slot(self, project):
+		if self.session_service.get_state() == SessionState.ACTIVE:
+			self.session_service.stop_session()
+			self.current_project_label.setText("No current project")
+			self.start_session_button.setEnabled(False)
+
+	@Slot(ProjectModel)
+	def active_project_rename_slot(self, project):
+		self.current_project_label.setText("Current project is <strong>%s</strong>" % project.name)
 
 	def _selection_changed(self, selected, deselected):
 		rows = self.projects_table.selectionModel().selectedRows()

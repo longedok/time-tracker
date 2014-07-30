@@ -10,12 +10,15 @@ from constants import SessionState
 class ProjectService(QObject):
 	project_activated = Signal(ProjectModel)
 	project_deleted = Signal(ProjectModel)
+	active_project_deleted = Signal(ProjectModel)
+	active_project_renamed = Signal(ProjectModel)
 
 	def __init__(self):
 		super(ProjectService, self).__init__()
 
 		self.project_dao = ProjectDao()
 		self.table_model = ProjectTableModel(self, self.project_dao)
+		self.table_model.dataChanged.connect(self._data_changed)
 
 		self.current_project = None
 
@@ -33,6 +36,8 @@ class ProjectService(QObject):
 		"Deletes projects"
 
 		ids = map(lambda x:self.table_model.data(x, Qt.UserRole).id, ixs)
+		if self.current_project.id in ids:
+			self.active_project_deleted.emit(self.current_project)
 		self.project_dao.delete_multiple(ids)
 		for ix in reversed(ixs):
 			self.table_model.removeRows(ix.row())
@@ -52,7 +57,9 @@ class ProjectService(QObject):
 		self.table_model.setData(ix, 1, Qt.UserRole)
 
 	def _data_changed(self, left_top, bottom_right):
-		pass
+		changed_prj = self.table_model.data(left_top, Qt.UserRole)
+		if left_top.column() == 0 and changed_prj.id == self.current_project.id:
+			self.active_project_renamed.emit(self.current_project)
 
 
 class SessionService(QObject):

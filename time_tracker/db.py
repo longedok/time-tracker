@@ -53,14 +53,10 @@ class ProjectDao(GenericDao):
 		return result[0][0]
 
 	def delete(self, project):
-		start = time.time()
 		self.execute("DELETE FROM projects WHERE id = ?", (project.id,))
-		print "SQL:", time.time() - start
 
 	def delete_multiple(self, ids):
-		start = time.time()
 		self.execute("DELETE FROM projects WHERE id in (%s)" % ", ".join(map(str, ids)))
-		print "multiple SQL:", time.time() - start
 
 
 class SessionDao(GenericDao):
