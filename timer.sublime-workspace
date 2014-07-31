@@ -4,16 +4,72 @@
 		"selected_items":
 		[
 			[
+				"proj",
+				"projects"
+			],
+			[
+				"col",
+				"column"
+			],
+			[
+				"project",
+				"projects_table"
+			],
+			[
+				"curre",
+				"current_session"
+			],
+			[
+				"ses",
+				"sess_form"
+			],
+			[
+				"session",
+				"session_service"
+			],
+			[
 				"proje",
-				"project"
+				"project_dao"
+			],
+			[
+				"def",
+				"default_project_name"
+			],
+			[
+				"vali",
+				"validation_errors"
+			],
+			[
+				"val",
+				"validation_errors"
+			],
+			[
+				"swit",
+				"switch_project"
+			],
+			[
+				"stop",
+				"stop_session"
+			],
+			[
+				"curr",
+				"current_session"
+			],
+			[
+				"act",
+				"active_project_rename_slot"
+			],
+			[
+				"Ses",
+				"SessionState"
+			],
+			[
+				"sessi",
+				"session_service"
 			],
 			[
 				"table",
 				"table_model"
-			],
-			[
-				"curre",
-				"current_project"
 			],
 			[
 				"dele",
@@ -24,20 +80,12 @@
 				"selected_ix"
 			],
 			[
-				"project",
-				"project_service"
-			],
-			[
 				"selection",
 				"selectionModel"
 			],
 			[
 				"prj_d",
 				"project_dao"
-			],
-			[
-				"proj",
-				"projects"
 			],
 			[
 				"prj",
@@ -76,20 +124,12 @@
 				"start_session_button"
 			],
 			[
-				"curr",
-				"current_project"
-			],
-			[
 				"delete",
 				"delete_project_button"
 			],
 			[
 				"switch_p",
 				"switch_project_button"
-			],
-			[
-				"ses",
-				"SessionService"
 			],
 			[
 				"start_ses",
@@ -100,24 +140,8 @@
 				"session_stopped"
 			],
 			[
-				"session",
-				"session_dao"
-			],
-			[
-				"Ses",
-				"SessionDao"
-			],
-			[
-				"stop",
-				"stop_session_clicked"
-			],
-			[
 				"watch",
 				"watch_sessions_clicked"
-			],
-			[
-				"swit",
-				"switch_project_clicked"
 			],
 			[
 				"clc",
@@ -248,42 +272,18 @@
 			}
 		},
 		{
-			"file": "time_tracker/service.py",
-			"settings":
-			{
-				"buffer_size": 2814,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/D/code/python/xpride/xpride_blog/blog/views.py",
-			"settings":
-			{
-				"buffer_size": 2635,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/D/code/python/xpride/xpride_blog/.gitignore",
-			"settings":
-			{
-				"buffer_size": 5,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": ".gitignore",
-			"settings":
-			{
-				"buffer_size": 5,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "time_tracker/ui.py",
 			"settings":
 			{
-				"buffer_size": 4995,
+				"buffer_size": 6467,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "time_tracker/service.py",
+			"settings":
+			{
+				"buffer_size": 3860,
 				"line_ending": "Windows"
 			}
 		},
@@ -291,7 +291,7 @@
 			"file": "time_tracker/models.py",
 			"settings":
 			{
-				"buffer_size": 4910,
+				"buffer_size": 5642,
 				"line_ending": "Windows"
 			}
 		},
@@ -299,7 +299,7 @@
 			"file": "time_tracker/db.py",
 			"settings":
 			{
-				"buffer_size": 2767,
+				"buffer_size": 2642,
 				"line_ending": "Windows"
 			}
 		}
@@ -328,6 +328,9 @@
 	},
 	"file_history":
 	[
+		"/D/code/python/xpride/xpride_blog/blog/views.py",
+		"/D/code/python/xpride/xpride_blog/.gitignore",
+		"/D/code/python/timer/.gitignore",
 		"/D/code/python/xpride/xpride_blog/readme.txt",
 		"/D/code/python/timer/time_tracker/application.py",
 		"/D/code/python/test.py",
@@ -392,7 +395,6 @@
 		"/D/code/python/django/ajax_test/ajax_test_app/urls.py",
 		"/D/code/python/django/ajax_test/ajax_test_app/templates/index.html",
 		"/D/code/python/xpride/xpride_blog/blog/urls.py",
-		"/D/code/python/xpride/xpride_blog/blog/views.py",
 		"/C/Users/Evgeniy/AppData/Roaming/Sublime Text 2/Packages/Theme - Default/Default.sublime-theme"
 	],
 	"find":
@@ -411,6 +413,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"switch_project_clic",
 			"start_bu",
 			"(u\".*\")",
 			"sidebar_lab"
@@ -432,7 +435,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -463,18 +466,45 @@
 				},
 				{
 					"buffer": 1,
-					"file": "time_tracker/service.py",
+					"file": "time_tracker/ui.py",
 					"settings":
 					{
-						"buffer_size": 2814,
+						"buffer_size": 6467,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1038,
-								1038
+								3303,
+								3303
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "time_tracker/service.py",
+					"settings":
+					{
+						"buffer_size": 3860,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1358,
+								1358
 							]
 						],
 						"settings":
@@ -489,153 +519,46 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/D/code/python/xpride/xpride_blog/blog/views.py",
+					"buffer": 3,
+					"file": "time_tracker/models.py",
 					"settings":
 					{
-						"buffer_size": 2635,
+						"buffer_size": 5642,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								664,
-								664
+								5488,
+								5488
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 840.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/D/code/python/xpride/xpride_blog/.gitignore",
-					"settings":
-					{
-						"buffer_size": 5,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5,
-								5
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1920.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": ".gitignore",
-					"settings":
-					{
-						"buffer_size": 5,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5,
-								5
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "time_tracker/ui.py",
-					"settings":
-					{
-						"buffer_size": 4995,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2687,
-								2687
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1080.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "time_tracker/models.py",
-					"settings":
-					{
-						"buffer_size": 4910,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2067,
-								2067
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1462.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
 					"file": "time_tracker/db.py",
 					"settings":
 					{
-						"buffer_size": 2767,
+						"buffer_size": 2642,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1871,
-								1871
+								376,
+								376
 							]
 						],
 						"settings":
@@ -644,7 +567,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 600.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

@@ -1,7 +1,7 @@
 import time
 
 from PySide.QtGui import QWidget, QHeaderView, QDialog, QAbstractItemView, QMessageBox
-from PySide.QtCore import QTimer, Qt, Slot
+from PySide.QtCore import QTimer, Qt, Slot, QSettings
 
 from ui_mainform import Ui_MainForm
 from ui_sessionsform import Ui_SessionsForm
@@ -98,7 +98,7 @@ class MainForm(QWidget, Ui_MainForm):
 		self.start_session_button.setText("Pause")
 
 	@Slot()
-	def session_finish_slot(self):
+	def session_finish_slot(self, session):
 		self.start_project_button.setEnabled(True)
 		self.start_session_button.setText("Start Session")
 		self.stop_session_button.setEnabled(False)
@@ -116,18 +116,27 @@ class MainForm(QWidget, Ui_MainForm):
 		self.timer_label.setText(convert_seconds_to_time(time))
 
 	@Slot(ProjectModel)
-	def active_project_deletion_slot(self, project):
+	def active_project_deletion_slot(self):
 		if self.session_service.get_state() == SessionState.ACTIVE:
 			self.session_service.stop_session()
 			self.current_project_label.setText("No current project")
 			self.start_session_button.setEnabled(False)
+		self.current_project = None
 
 	@Slot(ProjectModel)
 	def active_project_rename_slot(self, project):
 		self.current_project_label.setText("Current project is <strong>%s</strong>" % project.name)
 
+	def showEvent(self, event):
+		settings = QSettings()
+		last_project_id = settings.value("projects/last_project")
+		if last_project_id:
+			ix = self.project_service.get_index_by_id(last_project_id)
+			self.project_service.switch_project(ix)
+
 	def closeEvent(self, event):
 		self.session_service.stop_session()
+		self.project_service.close_project()
 
 	def _selection_changed(self, selected, deselected):
 		rows = self.projects_table.selectionModel().selectedRows()

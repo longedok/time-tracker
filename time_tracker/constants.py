@@ -1,4 +1,4 @@
-DATABASE_FILE = "db"
+DATABASE_FILE = "db.sqlite3"
 
 class SessionState(object):
 	STOPPED = 0

@@ -51,12 +51,12 @@ class ProjectTableModel(QAbstractTableModel):
 		self.endInsertRows()
 
 
-	def get_project_duration_index(self, project):
-		"Returns index of the 'Duration' cell for the given project"
+	def get_cell_index(self, project_id, column):
+		"Returns index of the first cell for the given project id"
 
 		for row, prj in enumerate(self.projects):
-			if prj.id == project.id:
-				return self.index(row, 2, QModelIndex())
+			if prj.id == project_id:
+				return self.index(row, column, QModelIndex())
 
 	def rowCount(self, parent):
 		return len(self.projects)
@@ -128,7 +128,9 @@ class ProjectTableModel(QAbstractTableModel):
 					return False
 			elif role == Qt.UserRole:
 				prj = self.projects[index.row()]
-				if index.column() == 2:
+				if index.column() == 1:
+					prj.last_session = value
+				elif index.column() == 2:
 					prj.total_duration += value
 				else:
 					return False

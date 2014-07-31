@@ -4,11 +4,33 @@ import time
 import constants
 from models import ProjectModel, SessionModel
 
+def create_db(db_name):
+	projects_table_sql = '''CREATE TABLE IF NOT EXISTS `projects`	 (
+		`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+		`name`	TEXT NOT NULL);'''
+
+	sessions_table_sql = '''CREATE TABLE IF NOT EXISTS `sessions` (
+		`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+		`start`	INTEGER NOT NULL,
+		`end`	INTEGER NOT NULL,
+		`project_id`	INTEGER,
+		FOREIGN KEY(project_id) REFERENCES projects(id) ON DELETE CASCADE
+	);'''
+
+	conn = sqlite3.connect(db_name)
+
+	with conn:
+		for table_sql in (projects_table_sql, sessions_table_sql):
+			conn.execute(table_sql)
+
+	conn.close()
+
 
 class GenericDao(object):
 
 	def execute(self, sql, values=tuple()):
 		conn = sqlite3.connect(constants.DATABASE_FILE)
+		conn.execute('pragma foreign_keys=ON')
 		with conn:
 			curr = conn.cursor()
 			results = list(curr.execute(sql, values))
@@ -38,9 +60,13 @@ class ProjectDao(GenericDao):
 		return projects
 
 	def get_by_id(self, id):
-		fields = self.execute("SELECT * FROM projects WHERE id = ?", (id,))
+		fields = self.execute("""SELECT projects.*, MAX(sessions.end), SUM(sessions.end - sessions.start) 
+			FROM projects 
+			LEFT JOIN sessions ON projects.id == sessions.project_id 
+			WHERE projects.id = ?
+			GROUP BY projects.id""", (id,))
 		prj_data = fields[0]
-		return ProjectModel(prj_data[0], prj_data[1])
+		return ProjectModel(prj_data[0], prj_data[1], prj_data[2], prj_data[3])
 
 	def get_last_session(self, project):
 		result = self.execute("SELECT MAX(end) FROM sessions WHERE project_id = ?", (project_id,))
