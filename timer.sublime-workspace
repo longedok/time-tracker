@@ -4,6 +4,50 @@
 		"selected_items":
 		[
 			[
+				"switch",
+				"switch_project"
+			],
+			[
+				"projec",
+				"project_service"
+			],
+			[
+				"proje",
+				"project_service"
+			],
+			[
+				"last",
+				"last_project_id"
+			],
+			[
+				"get",
+				"get_cell_index"
+			],
+			[
+				"cur",
+				"current_project"
+			],
+			[
+				"curre",
+				"current_project"
+			],
+			[
+				"val",
+				"value"
+			],
+			[
+				"ses",
+				"sessions"
+			],
+			[
+				"time",
+				"time_tracker"
+			],
+			[
+				"sess",
+				"sessions_table_sql"
+			],
+			[
 				"proj",
 				"projects"
 			],
@@ -16,20 +60,8 @@
 				"projects_table"
 			],
 			[
-				"curre",
-				"current_session"
-			],
-			[
-				"ses",
-				"sess_form"
-			],
-			[
 				"session",
 				"session_service"
-			],
-			[
-				"proje",
-				"project_dao"
 			],
 			[
 				"def",
@@ -37,10 +69,6 @@
 			],
 			[
 				"vali",
-				"validation_errors"
-			],
-			[
-				"val",
 				"validation_errors"
 			],
 			[
@@ -160,10 +188,6 @@
 				"SessionModel"
 			],
 			[
-				"cur",
-				"current_session"
-			],
-			[
 				"p",
 				"project"
 			],
@@ -192,20 +216,12 @@
 				"SELECT"
 			],
 			[
-				"projec",
-				"project_name"
-			],
-			[
 				"re",
 				"returned"
 			],
 			[
 				"ti",
 				"timer_label"
-			],
-			[
-				"time",
-				"time_ticking"
 			],
 			[
 				"star",
@@ -244,10 +260,6 @@
 				"clear_link"
 			],
 			[
-				"get",
-				"getElementById"
-			],
-			[
 				"clea",
 				"clear_link"
 			],
@@ -267,7 +279,7 @@
 			"file": "main.py",
 			"settings":
 			{
-				"buffer_size": 526,
+				"buffer_size": 865,
 				"line_ending": "Windows"
 			}
 		},
@@ -275,7 +287,7 @@
 			"file": "time_tracker/ui.py",
 			"settings":
 			{
-				"buffer_size": 6467,
+				"buffer_size": 6789,
 				"line_ending": "Windows"
 			}
 		},
@@ -283,7 +295,7 @@
 			"file": "time_tracker/service.py",
 			"settings":
 			{
-				"buffer_size": 3860,
+				"buffer_size": 4361,
 				"line_ending": "Windows"
 			}
 		},
@@ -291,7 +303,7 @@
 			"file": "time_tracker/models.py",
 			"settings":
 			{
-				"buffer_size": 5642,
+				"buffer_size": 5704,
 				"line_ending": "Windows"
 			}
 		},
@@ -299,7 +311,15 @@
 			"file": "time_tracker/db.py",
 			"settings":
 			{
-				"buffer_size": 2642,
+				"buffer_size": 3451,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "time_tracker/constants.py",
+			"settings":
+			{
+				"buffer_size": 94,
 				"line_ending": "Windows"
 			}
 		}
@@ -328,13 +348,13 @@
 	},
 	"file_history":
 	[
+		"/D/code/python/test.py",
+		"/D/code/python/timer/main.py",
 		"/D/code/python/xpride/xpride_blog/blog/views.py",
 		"/D/code/python/xpride/xpride_blog/.gitignore",
 		"/D/code/python/timer/.gitignore",
 		"/D/code/python/xpride/xpride_blog/readme.txt",
 		"/D/code/python/timer/time_tracker/application.py",
-		"/D/code/python/test.py",
-		"/D/code/python/timer/main.py",
 		"/D/code/python/timer/time_tracker/ui.py",
 		"/D/code/python/timer/time_tracker/service.py",
 		"/D/code/python/timer/time_tracker/models.py",
@@ -443,15 +463,15 @@
 					"file": "main.py",
 					"settings":
 					{
-						"buffer_size": 526,
+						"buffer_size": 865,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								120,
-								120
+								500,
+								500
 							]
 						],
 						"settings":
@@ -469,15 +489,15 @@
 					"file": "time_tracker/ui.py",
 					"settings":
 					{
-						"buffer_size": 6467,
+						"buffer_size": 6789,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3303,
-								3303
+								4997,
+								4997
 							]
 						],
 						"settings":
@@ -486,7 +506,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2280.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -496,15 +516,15 @@
 					"file": "time_tracker/service.py",
 					"settings":
 					{
-						"buffer_size": 3860,
+						"buffer_size": 4361,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1358,
-								1358
+								1881,
+								1881
 							]
 						],
 						"settings":
@@ -513,7 +533,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 420.0,
+						"translation.y": 1135.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -523,15 +543,15 @@
 					"file": "time_tracker/models.py",
 					"settings":
 					{
-						"buffer_size": 5642,
+						"buffer_size": 5704,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5488,
-								5488
+								1453,
+								1453
 							]
 						],
 						"settings":
@@ -540,7 +560,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1920.0,
+						"translation.y": 780.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -550,21 +570,47 @@
 					"file": "time_tracker/db.py",
 					"settings":
 					{
-						"buffer_size": 2642,
+						"buffer_size": 3451,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								376,
-								376
+								2390,
+								2390
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Python/Python.tmLanguage",
 							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1627.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "time_tracker/constants.py",
+					"settings":
+					{
+						"buffer_size": 94,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								27,
+								27
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

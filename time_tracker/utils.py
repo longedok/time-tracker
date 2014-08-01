@@ -2,7 +2,7 @@ import time
 import locale
 
 def convert_seconds_to_time(seconds):
-	if not seconds:
+	if not seconds or seconds < 0:
 		return "00:00:00"
 	hours = int(seconds / 3600)
 	seconds -= hours*3600

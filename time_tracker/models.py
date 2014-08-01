@@ -12,7 +12,7 @@ class ProjectModel(object):
 	def __init__(self, id=0, name='', last_session=None, total_duration=0):
 		self.id = id
 		self.name = name
-		self.last_session = last_session or time.time()
+		self.last_session = last_session
 		self.total_duration = total_duration or 0
 
 	def __str__(self):
@@ -32,6 +32,27 @@ class ProjectModel(object):
 		if len(project.name.strip()) == 0:
 			errors.append("Project name couldn't be empty")
 		return errors
+
+
+class SessionModel(object):
+
+	def __init__(self, id=0, start=0, end=0, duration=0, project_id=0, pauses=0, pause_duration=0):
+		self.id = id
+		self.start = start
+		self.end = end
+		self.duration = duration
+		self.project_id = project_id
+		self.pauses = pauses
+		self.pause_duration = pause_duration
+
+
+class PauseModel(object):
+
+	def __init__(self, id=0, start=0, end=0, session_id=0):
+		self.id = id
+		self.start = start
+		self.end = end
+		self.session_id = session_id
 
 
 class ProjectTableModel(QAbstractTableModel):
@@ -80,7 +101,10 @@ class ProjectTableModel(QAbstractTableModel):
 			if index.column() == 0:
 				return prj.name
 			elif index.column() == 1:
-				return convert_timestamp_to_time(prj.last_session)
+				if prj.last_session:
+					return convert_timestamp_to_time(prj.last_session)
+				else:
+					return "-"
 			elif index.column() == 2:
 				return convert_seconds_to_time(prj.total_duration)
 
@@ -161,19 +185,6 @@ class ProjectTableModel(QAbstractTableModel):
 		self.layoutChanged.emit()
 
 
-
-class SessionModel(object):
-	def __init__(self, id=0, start=0, end=0, project_id=0):
-		self.id = id
-		self.start = start
-		self.end = end
-		self.project_id = project_id
-
-	def __str__(self):
-		format_str = "%H:%M:%S"
-		return "%d - %s %s %d" % (self.id, strftime(format_str, self.start), 
-			strftime(format_str, self.end), self.project_id)
-
 class SessionTableModel(QAbstractTableModel):
 
 	def __init__(self, parent, project, session_dao, *args):
@@ -186,20 +197,28 @@ class SessionTableModel(QAbstractTableModel):
 		return len(self.sessions)
 
 	def columnCount(self, parent):
-		return 3
+		return 4
 
 	def data(self, index, role):
 		if role == Qt.UserRole:
 			return self.sessions[index.row()]
+
 		if role != Qt.DisplayRole:
 			return None
+
 		session = self.sessions[index.row()]
-		if index.column() == 0:
+		col = index.column()
+		if col == 0:
 			return convert_timestamp_to_time(session.start)
-		elif index.column() == 1:
-			return convert_timestamp_to_time(session.end)
-		elif index.column() == 2:
-			return convert_seconds_to_time(session.end - session.start)
+		elif col == 1:
+			if session.end == 0:
+				return '-'
+			else:
+				return convert_timestamp_to_time(session.end)
+		elif col == 2:
+			return convert_seconds_to_time(session.duration)
+		elif col == 3:
+			return "%d (%s)" % (session.pauses, convert_seconds_to_time(session.pause_duration))
 
 	def headerData(self, col, orientation, role):
 		if orientation == Qt.Horizontal and role == Qt.DisplayRole:
@@ -209,5 +228,6 @@ class SessionTableModel(QAbstractTableModel):
 				return "End"
 			elif col == 2:
 				return "Duration"
-		else:
+			elif col == 3:
+				return "Pauses"
 			return QAbstractTableModel.headerData(self, col, orientation, role)

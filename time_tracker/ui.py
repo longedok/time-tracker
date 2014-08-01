@@ -90,15 +90,15 @@ class MainForm(QWidget, Ui_MainForm):
 		self.start_project_button.setEnabled(False)
 
 	@Slot()
-	def session_pause_slot(self):
+	def session_pause_slot(self, session):
 		self.start_session_button.setText("Resume")
 
 	@Slot()
-	def session_resume_slot(self):
+	def session_resume_slot(self, session):
 		self.start_session_button.setText("Pause")
 
 	@Slot()
-	def session_finish_slot(self, session):
+	def session_finish_slot(self):
 		self.start_project_button.setEnabled(True)
 		self.start_session_button.setText("Start Session")
 		self.stop_session_button.setEnabled(False)

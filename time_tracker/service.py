@@ -3,8 +3,8 @@ from functools import partial
 
 from PySide.QtCore import QTimer, QObject, Signal, QModelIndex, Qt, QSettings
 
-from models import ProjectModel, SessionModel, ProjectTableModel, SessionTableModel
-from db import ProjectDao, SessionDao
+from models import ProjectModel, SessionModel, ProjectTableModel, SessionTableModel, PauseModel
+from db import ProjectDao, SessionDao, PauseDao
 from constants import SessionState
 
 class ProjectService(QObject):
@@ -76,9 +76,9 @@ class ProjectService(QObject):
 		ix = self.table_model.get_cell_index(self.current_project.id, 2)
 		self.table_model.setData(ix, 1, Qt.UserRole)
 
-	def session_stop_slot(self, session):
+	def session_stop_slot(self):
 		ix = self.table_model.get_cell_index(self.current_project.id, 1)
-		self.table_model.setData(ix, session.end, Qt.UserRole)
+		self.table_model.setData(ix, time.time(), Qt.UserRole)
 
 	def _data_changed(self, left_top, bottom_right):
 		if self.current_project:
@@ -89,9 +89,9 @@ class ProjectService(QObject):
 
 class SessionService(QObject):
 	session_started = Signal(SessionModel)
-	session_paused = Signal()
-	session_resumed = Signal()
-	session_stopped = Signal(SessionModel)
+	session_paused = Signal(SessionModel)
+	session_resumed = Signal(SessionModel)
+	session_stopped = Signal()
 	timer_updated = Signal(float)
 
 	def __init__(self):
@@ -110,6 +110,7 @@ class SessionService(QObject):
 	def start_session(self, project):
 		self.time = 0
 		self.current_session = SessionModel(start = time.time(), project_id = project.id)
+		self.current_session = self.session_dao.save(self.current_session)
 		self.timer.start(1000)
 		self.state = SessionState.ACTIVE
 		self.session_started.emit(self.current_session)
@@ -117,20 +118,23 @@ class SessionService(QObject):
 	def pause_session(self):
 		self.timer.stop()
 		self.state = SessionState.PAUSED
-		self.session_paused.emit()
+		self.session_paused.emit(self.current_session)
 
 	def resume_session(self):
 		self.timer.start(1000)
 		self.state = SessionState.ACTIVE
-		self.session_resumed.emit()
+		self.current_pause = None
+		self.session_resumed.emit(self.current_session)
 
 	def stop_session(self):
 		self.state = SessionState.STOPPED
 		self.timer.stop()
 		if self.current_session:
-			self.current_session.end = self.current_session.start + self.time
+			self.current_session.end = time.time()
+			self.current_session.duration = self.time
 			self.session_dao.save(self.current_session)
-			self.session_stopped.emit(self.current_session)
+			self.session_stopped.emit()
+			self.current_session = None
 		self.time = 0
 
 	def get_state(self):
@@ -143,3 +147,28 @@ class SessionService(QObject):
 	def _timer_timeout(self):
 		self.time += 1
 		self.timer_updated.emit(self.time)
+
+
+class PauseService(object):
+
+	def __init__(self):
+		self.current_pause = None
+		self.pause_dao = PauseDao()
+
+	def start_pause(self, session_id):
+		self.current_pause = PauseModel(start=time.time(), session_id=session_id)
+
+	def end_pause(self):
+		self.current_pause.end = time.time()
+		self.pause_dao.save(self.current_pause)
+		self.current_pause = None
+
+	def session_pause_slot(self, session):
+		self.start_pause(session.id)
+
+	def session_resume_slot(self, session):
+		self.end_pause()
+
+	def session_stop_slot(self):
+		if self.current_pause:
+			self.end_pause()
