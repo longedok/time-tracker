@@ -1,6 +1,6 @@
 import time
 
-from PySide.QtGui import QWidget, QHeaderView, QDialog, QAbstractItemView, QMessageBox
+from PySide.QtGui import QWidget, QHeaderView, QDialog, QAbstractItemView, QMessageBox, QItemSelectionModel
 from PySide.QtCore import QTimer, Qt, Slot, QSettings
 
 from ui_mainform import Ui_MainForm
@@ -104,11 +104,16 @@ class MainForm(QWidget, Ui_MainForm):
 		self.stop_session_button.setEnabled(False)
 		self._clear_timer()
 
-	@Slot(ProjectModel)
-	def project_activation_slot(self, project):
+	@Slot(ProjectModel, bool)
+	def project_activation_slot(self, project, new_project):
 		self.current_project = project
 		self._clear_timer()
 		self.current_project_label.setText("Current project is <strong>%s</strong>" % project.name)
+		if new_project:
+			ix = self.project_service.get_index_by_id(project.id)
+			self.projects_table.edit(ix)
+			self.projects_table.selectionModel().setCurrentIndex(ix, 
+				QItemSelectionModel.ClearAndSelect | QItemSelectionModel.Rows)
 		self.start_session_button.setEnabled(True)
 
 	@Slot(float)

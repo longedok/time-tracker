@@ -8,7 +8,7 @@ from db import ProjectDao, SessionDao, PauseDao
 from constants import SessionState
 
 class ProjectService(QObject):
-	project_activated = Signal(ProjectModel)
+	project_activated = Signal(ProjectModel, bool) # 2nd param indicates if the activated project is newly created
 	project_deleted = Signal(ProjectModel)
 	active_project_deleted = Signal()
 	active_project_renamed = Signal(ProjectModel)
@@ -34,7 +34,7 @@ class ProjectService(QObject):
 
 		self.table_model.insert_project(0, self.current_project)
 
-		self.project_activated.emit(self.current_project)
+		self.project_activated.emit(self.current_project, True)
 
 	def delete_projects(self, ixs):
 		"Deletes projects"
@@ -54,7 +54,7 @@ class ProjectService(QObject):
 
 		if project.id != self.current_project:
 			self.current_project = project
-			self.project_activated.emit(project)
+			self.project_activated.emit(project, False)
 
 	def close_project(self):
 		settings = QSettings()
